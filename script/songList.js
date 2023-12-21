@@ -212,6 +212,7 @@ function counter(timer, sets) {
   let setLength = timer * 60;
   let amountOfSets = sets;
   let resultList = [];
+  const songsGap = 10;
 
   for (let set = 0; set < amountOfSets; set++) {
     let count = setLength;
@@ -233,7 +234,7 @@ function counter(timer, sets) {
       let findEng = sortedEng[findIndexEng];
       if (!selectedEng.has(findEng.name)) {
         result.push(findEng);
-        count -= converterToSeconds(findEng.duration);
+        count -= converterToSeconds(findEng.duration) + songsGap;
         selectedEng.add(findEng.name);
       }
 
@@ -250,7 +251,7 @@ function counter(timer, sets) {
       let findChin = sortedChin[findIndexChinese];
       if (!selectedChin.has(findChin.name)) {
         result.push(findChin);
-        count -= converterToSeconds(findChin.duration);
+        count -= converterToSeconds(findChin.duration) + songsGap;
         selectedChin.add(findChin.name);
       }
 
@@ -264,14 +265,19 @@ function counter(timer, sets) {
   let songsGenerated = '';
   let totalSetLength = 0;
 
+
   for (let set = 0; set < resultList.length; set++) {
-    songsGenerated += `Set ${set + 1}:<br>`;
+    songsGenerated += `Set ${set + 1}:<br><br>`;
+    let gapCounter = 0;
     for (let i = 0; i < resultList[set].length; i++) {
       songsGenerated += `${i + 1}. ${resultList[set][i].name} - ${resultList[set][i].duration}<br>`;
       totalSetLength += converterToSeconds(resultList[set][i].duration);
+      gapCounter +=1;
     }
     songsGenerated += '<br>';
     songsGenerated += `<h3>Total set length: ${timerGenerator(totalSetLength)}<br></h3>`;
+    songsGenerated += `<h5>Total gap lenght: ${gapCounter *10} seconds</h5> Total Set length: 
+    ${timerGenerator(totalSetLength + gapCounter * 10)}<br>`;
     songsGenerated += '<br>';
     totalSetLength = 0;
   }
@@ -363,5 +369,4 @@ function displaySongsList(songs, containerId) {
   listContainer.innerHTML = "";
   listContainer.appendChild(list);
 }
-
 

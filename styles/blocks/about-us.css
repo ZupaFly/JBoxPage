@@ -1,0 +1,67 @@
+.about-us__title {
+  font-weight: 700;
+  padding: 0 124px;
+  font-size: 48px;
+  line-height: 48px;
+  text-align: center;
+  letter-spacing: -1.5px;
+  margin-bottom: 40px;
+}
+
+.about-us__container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.about-us__logo {
+  grid-column: 1 / 5;
+}
+
+.about-us__picture {
+  width: 100%;
+}
+
+.about-us__description {
+  grid-column: 6 / 10;
+}
+
+.about-us__language {
+  margin-bottom: 20px;
+}
+
+.about-us__linkEng,
+.about-us__linkChi {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.about-us__eng,
+.about-us__chi {
+  margin: 0;
+  text-align: justify;
+  display: block;
+}
+
+.about-us__chineseSongs {
+  margin: 0;
+  text-decoration: none;
+  color: rgb(255, 127, 144);
+  cursor: pointer;
+  font-size: larger;
+}
+
+.hidden {
+  display: none;
+}
+
+.text_toper {
+  margin: 0 0 20px;
+}
+
+.text_middle {
+  margin: 0 0 20px;
+}
+
+.text_bottom {
+  margin: 0 0 20px;
+}
