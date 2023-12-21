@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="general__page">
 <head class="general">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +40,9 @@
             <a 
               href="./chinSongList.html"
               class="dropdown__link">Chinese Songs</a>
+              <a 
+              href="./listGenerator.html"
+              class="dropdown__link">Song List Generator</a>
           </div>
         </div>
       </li>
@@ -55,28 +58,155 @@
     </ul>
   </nav>
 
-  <section class="header__landing"></section>
-    
+  <section class="header__landing">
+    <div class="carousel-container">
+      <div class="slide">
+        <img src="./pics/Slider1.jpg" alt="Slide 1" class="picture">
+      </div>
+      <div class="slide">
+        <img src="./pics/Slider2.jpg" alt="Slide 2" class="picture">
+      </div>
+      <div class="slide">
+        <img src="./pics/Slider3.jpg" alt="Slide 3" class="picture">
+      </div>
+  
+      <button class="prev" onclick="plusSlides(-1)">❮</button>
+      <button class="next" onclick="plusSlides(1)">❯</button>
+    </div>
+  </section>
   </header>
   <main>
-    <form id="setLengthForm">
-      <label for="setLength">Set Length (minutes):</label>
-      <input type="number" id="setLength" name="setLength" min="1" required>
-    </form>
-  
-    <form id="numSetsForm">
-      <label for="numSets">Number of Sets:</label>
-      <input type="number" id="numSets" name="numSets" min="1" required>
-    </form>
-    <div id="messageContainer"></div>
 
-    <button id="generateButton">Generate List</button>
-    <button id="copyButton">COPY</button>
-  
+  <section 
+    class="gallery__section gallery" 
+    id="gallery"
+  >
+    <h2 class="gallery__title">
+      Gallery
+      <br>
+      J-Box Band
+    </h2>
+
+    <div class="gallery__items">
+      <div class="gallery__items-1">
+        <img 
+          src="./pics/Val.jpg" 
+          alt="image 1"
+          class="gallery__items-picture"
+        >
+      </div>
+      <h3 class="gallery__description gallery__items-1-1">Valerie - vocals</h3>
+    
+      <div class="gallery__items-2">
+        <img 
+          src="./pics/dDrum.jpg" 
+          alt="image 1"
+          class="gallery__items-picture"
+        >
+      </div>
+      <h3 
+        class="gallery__description gallery__items-2-2">Dima - Drums</h3>
+
+      <div class="gallery__items-3">
+        <img 
+          src="./pics/Rom.jpg" 
+          alt="image 1"
+          class="gallery__items-picture"
+        >
+      </div>
+    <h3 class="gallery__description gallery__items-3-3">
+      Roman - Guitar
+    </h3>
+
+      <div class="gallery__items-4">
+        <img 
+          src="./pics/dBass.jpg" 
+          alt="image 1"
+          class="gallery__items-picture"
+        >
+      </div>
+
+    <h3 class="gallery__description gallery__items-4-4">
+      Dima - Bass
+    </h3>
+
+    </div>
+  </section>
+
+  <section id="about-us" class="about-us__title">
+    <h2>Who We Are</h2>
+
+    <div class="about-us__container">
+
+        <div class="about-us__logo">
+            <img src="./pics/WeChat Image_20231221000140.jpg" alt="about-us pic" class="about-us__picture">
+        </div>
+
+        <div class="about-us__description">
+            <div class="about-us__language">
+                <a 
+                  href="#english-content" class="about-us__linkEng" 
+                  onclick="toggleContent('english')">ENG</a> /
+                <a 
+                  href="#chinese-content" 
+                  class="about-us__linkChi" 
+                  onclick="toggleContent('chinese')">CHI</a>
+            </div>
+
+            <div id="english-content" class="about-us__eng">
+                <h5 class="text_toper">J-BOX is a professional band from Ukraine, successfully working in China since 2017. The band
+                    formed in 2012 and consists of four educated and talented musicians.</h5>
+
+
+                <h6 class="text_middle">Since its formation, the band played tons of shows in different cities all around Europe. In
+                    China J-BOX worked in clubs, pubs, hotels and private events all over China, and currently is a
+                    resident band in OCT Shunde park.
+                    <br> <br>
+                    Among the hottest worldwide hits, J-BOX plays a bunch of the most popular
+                    <a class="about-us__chineseSongs" href="./chinSongList.html">Chinese songs</a> and works in
+                    different music styles from rock to lounge, from classic ballads to EDM, from pop to jazz.
+                    Various and large setlist of more than 400 songs will definitely satisfy any requirements.
+                    Well-chosen music, played by professionals, is the key to an unforgettable party, vibe, and
+                    atmosphere of any important event!
+
+                </h6>
+                <h5 class="text_bottom">J-BOX can't wait to bring you amazing music experience!</h5>
+            </div>
+            <div id="chinese-content" class="about-us__chi hidden">
+                <h5 class="text_toper">J-BOX 是一支乌克兰的专业乐队，自2017年起在中国成功工作。乐队成立于2012年，由四位受过良好教育且才华横溢的音乐家组成.
+                </h5>
+                <h6 class="text_middle">自成立以来，乐队在欧洲各地的不同城市进行了大量演出。在中国,
+                    J-BOX各地的俱乐部、酒吧、酒店和私人活动中工作，
+                    目前是顺德华侨城欢乐海岸PLUS的常驻乐队。
+                    <br><br> 在全球最热的歌曲中，
+                    <a class="about-us__chineseSongs" href="./chinSongList.html">J-BOX演绎了一系列最流行的中文歌曲</a>
+                    ，并以不同的音乐风格进行创作，
+                    从摇滚 (ROCK)到休闲音乐(LOUNGE)从经典民谣(CLASSIC SONGS)到EDM从流行音乐(POP)到爵士(JAZZ)。
+                    超过 400首歌曲的各种大型歌单绝对可以满足任何要求。
+                    由专业人士演奏的精心挑选的音乐是任何重要活动令人难忘的派对
+                    气氛的关键!
+                </h6>
+                <h5 class="text_bottom">J-BOX迫不及待地想为您带来震撼的音乐体验!</h5>
+            </div>
+        </div>
+
+        <script>
+            function toggleContent(language) {
+                if (language === 'english') {
+                    document.getElementById('english-content').classList.remove('hidden');
+                    document.getElementById('chinese-content').classList.add('hidden');
+                } else if (language === 'chinese') {
+                    document.getElementById('english-content').classList.add('hidden');
+                    document.getElementById('chinese-content').classList.remove('hidden');
+                }
+            }
+        </script>
+    </div>
+</section>
   </main>
 
   <footer class="footer"></footer>
 
-  <script src="./script/songList.js" defer></script>
+  <script src="./script/main.js" defer></script>
 </body>
 </html>
