@@ -1,0 +1,11 @@
+@import "./blocks/header.css";
+
+@import "./blocks/nav.css";
+
+@import"./blocks/general.css";
+
+@import './blocks/footer.css';
+
+@import'./blocks/list.css';
+
+@import './blocks/menu.css';

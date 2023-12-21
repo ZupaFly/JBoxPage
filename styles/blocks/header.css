@@ -1,0 +1,27 @@
+.header {
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin-top: 20px;
+  padding: 0 124px;
+}
+
+.header__logoLink {
+  padding: 0;
+  text-decoration: none;
+}
+
+.header__logo {
+  width: 180px;
+  height: 70px;
+}
+
+.header__landing {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
