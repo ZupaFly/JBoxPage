@@ -20,6 +20,40 @@
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
+  <header class="header">
+    <nav class="nav">
+    <a 
+      href="#"
+       class="header__logoLink">
+      <img 
+        src="./pics/WeChat Image_20231221000140 - Copy.jpg" 
+        alt="Logo image"
+        class="header__logo">
+    </a>
+    <ul class="nav__list">
+      <li class="nav__item nav__link">
+        <div class="dropdown">
+          <span class="dropdown__title">Song List</span>
+          <div class="dropdown__list">
+            <a 
+              href="./engSongList.html" class="dropdown__link">Foreign Songs</a>
+            <a 
+              href="./chinSongList.html"
+              class="dropdown__link">Chinese Songs</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav__item">
+        <a href="./index.html#gallery" class="nav__link">Gallery</a>
+      </li>
+      <li class="nav__item">
+        <a href="#video" class="nav__link">Video</a>
+      </li>
+      <li class="nav__item">
+        <a href="./index.html#about-us" class="nav__link">About Us</a>
+      </li>
+    </ul>
+  </nav>
   <div id="englishSongsList"></div>
 
   <script src="./script/songList.js"></script>

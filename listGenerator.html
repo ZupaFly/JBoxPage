@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="general__page">
+<head class="general">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J-box</title>
+  <link 
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin="use-credentials"
+  >
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./styles/main.css">
+  <script src="./script/songList.js" defer></script>
+</head>
+<body class="general">
+  <header class="header">
+    <nav class="nav">
+      <a 
+        href="./index.html"
+        class="header__logoLink">
+        <img 
+          src="./pics/WeChat Image_20231221000140 - Copy.jpg" 
+          alt="Logo image"
+          class="header__logo">
+      </a>
+      <ul class="nav__list">
+        <li class="nav__item nav__link">
+          <div class="dropdown">
+            <span class="dropdown__title">Song List</span>
+            <div class="dropdown__list">
+              <a 
+                href="./engSongList.html" class="dropdown__link">Foreign Songs</a>
+              <a 
+                href="./chinSongList.html"
+                class="dropdown__link">Chinese Songs</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav__item">
+          <a href="./index.html#gallery" class="nav__link">Gallery</a>
+        </li>
+        <li class="nav__item">
+          <a href="#video" class="nav__link">Video</a>
+        </li>
+        <li class="nav__item">
+          <a href="./index.html#about-us" class="nav__link">About Us</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section>
+      <form id="setLengthForm" class="setLengthForm">
+        <label for="setLength">Set Length (minutes):</label>
+        <input type="number" id="setLength" name="setLength" min="1" required>
+      </form>
+
+      <form id="numSetsForm">
+        <label for="numSets">Number of Sets:</label>
+        <input type="number" id="numSets" name="numSets" min="1" required>
+      </form>
+
+      <form id="extras">
+        <label for="extraRequirements">extra requirements:</label>
+        <li>Holidays<input type="checkbox"></li>
+        <li>Christmas/NewYear<input type="checkbox"></li>
+        <li>Chinese NewYear<input type="checkbox"></li>
+      </form>
+      <div id="messageContainer"></div>
+
+      <button id="generateButton">Generate List</button>
+      <button id="copyButton">COPY</button>
+    </section>
+  </header>
+</body>
+</html>
