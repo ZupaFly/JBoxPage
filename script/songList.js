@@ -23,7 +23,7 @@ let eng = [
     { name: "Sweet But Psycho", duration: "3:15" },
     { name: "Salt", duration: "4:40" },
     { name: "King and Queens", duration: "2:20" },
-    { name: "Waiting for love", duration: "3:35" },
+    { name: "Waiting for love", duration: "3:35", extra: 'holidays' },
     { name: "Skaterboy", duration: "4:25" },
     { name: "Girlfriend", duration: "2:55" },
     { name: "Larger Than Life", duration: "5:10" },
@@ -44,14 +44,14 @@ let eng = [
     { name: "Toxic", duration: "2:55" },
     { name: "24K Magic", duration: "5:10" },
     { name: "Grenade", duration: "5:05" },
-    { name: "Uptown Funk", duration: "3:15" },
+    { name: "Uptown Funk", duration: "3:15", extra: 'holidays' },
     { name: "Runaway baby", duration: "4:40" },
     { name: "Loked out of Heaven", duration: "2:20" },
     { name: "Treasure", duration: "3:35" },
     { name: "Thats what i like", duration: "4:25" },
     { name: "Lazy Song", duration: "2:55" },
     { name: "Just the way you are", duration: "5:10" },
-    { name: "Marry you", duration: "5:05" },
+    { name: "Marry you", duration: "5:05", extra: 'holidays'},
     { name: "Aint no sunshine", duration: "3:15" },
     { name: "How Deep Is Your Love", duration: "4:40" },
     { name: "Giant", duration: "2:20" },
@@ -157,17 +157,17 @@ let eng = [
     { name: "Stay", duration: "5:10" },
     { name: "Can't Stop This Feeling", duration: "5:05" },
     { name: "Castle in the Snow", duration: "3:15" },
-    { name: "Hot-n-Cold", duration: "4:40" },
-    { name: "Roar", duration: "2:20" },
-    { name: "Dark Horse", duration: "3:35" },
+    { name: "Hot-n-Cold", duration: "4:40", extra: 'christmas' },
+    { name: "Roar", duration: "2:20", extra: 'christmas' },
+    { name: "Dark Horse", duration: "3:35", extra: 'christmas'},
 ];
 
 let chinese = [
-  { name: "夜空中最亮的星 | The Brightest Star in the Night Sky", duration: "3:30" },
+  { name: "夜空中最亮的星 | The Brightest Star in the Night Sky", duration: "3:30"},
   { name: "You Took My Heart Away", duration: "2:45" },
   { name: "我的秘密 | My Secret", duration: "4:15" },
-  { name: "喜欢你 | Like You (Beyond cover)", duration: "3:00" },
-  { name: "少年 | Shao Nian | Youngster", duration: "5:20" },
+  { name: "喜欢你 | Like You (Beyond cover)", duration: "3:00", extra: 'holidays'},
+  { name: "少年 | Shao Nian | Youngster", duration: "5:20", extra: 'holidays'},
   { name: "突然想起你 | Suddenly Thinking of you", duration: "3:50" },
   { name: "你的酒馆对我打了烊 | Your Bar is Close to Me", duration: "2:15" },
   { name: "爱不爱我 | Do You love Me", duration: "4:10" },
@@ -175,7 +175,7 @@ let chinese = [
   { name: "后来 | Afterwards", duration: "3:25" },
   { name: "东西 | Things", duration: "4:55" },
   { name: "Mojito", duration: "2:40" },
-  { name: "海阔天空 | The Whole Wide World", duration: "5:05" },
+  { name: "海阔天空 | The Whole Wide World", duration: "5:05", extra: 'holidays' },
   { name: "你一定要幸福 | Happiness", duration: "3:15" },
   { name: "I Love You", duration: "4:40" },
   { name: "一生听爱 ｜ Life is listening to love", duration: "2:20" },
@@ -196,66 +196,132 @@ let chinese = [
   { name: "失恋阵线联盟 | Lost love Alliance", duration: "4:40" },
   { name: "你的答案 | Your answer", duration: "2:20" },
   { name: "⽉半⼩夜曲 | Moon Serenade", duration: "3:35" },
-  { name: "恭喜发财 | Gong Xi Fa Cai", duration: "4:25" },
+  { name: "恭喜发财 | Gong Xi Fa Cai", duration: "4:25", extra: 'chinNewYear' },
   { name: "说散就散 | If you say you leave", duration: "2:55" },
   { name: "恋爱ing | LOVE-ing", duration: "5:10" },
   { name: "愛要坦蕩蕩 | Love must be generous", duration: "5:05" },
   { name: "漠河舞厅  | MoHe Ballroom", duration: "3:15" },
   { name: "张国荣 (Leslie Cheung) — Monica", duration: "4:40" },
   { name: "张敬轩 — 只是太爱你 （Love you so much）", duration: "2:20" },
-  { name: "陳奕迅 (Eason Chan) —  孤勇者 （Lonely Warrior）", duration: "3:35" },
+  { name: "陳奕迅 (Eason Chan) —  孤勇者 （Lonely Warrior）", duration: "3:35", extra: 'holidays' },
   { name: "Mike — 初恋 （First love）", duration: "4:25" },
-  { name: "周蕙 — 不想让你知道（Don’t want you to know）", duration: "2:55" }
+  { name: "周蕙 — 不想让你知道（Don’t want you to know）", duration: "2:55" },
+  { name: "韩红 — 青春（Youth）", duration: "2:30" },
+  { name: "老狼 — 同桌的你 （My deskmate）", duration: "3:42" },
+  { name: "许冠杰 — 財神到 （Coi San Dou， 春节 special）", duration: "4:54", extra: 'chinNewYear' },
+  { name: "新裤子 —  你要跳舞吗 （Do you want to dance?)", duration: "6:06" },
+  { name: "张艾嘉 — 爱的代价 (The price of love)", duration: "7:18" },
+  { name: "梦然 — 是你 （Shi Ni)", duration: "8:30" },
+  { name: "G.E.M. — 光年之外 （Light years away）", duration: "9:42" },
+  { name: "告五人 (Accusefive) — 爱人错过 （Somewhere in time）", duration: "10:54" },
 ];
 
-function counter(timer, sets) {
-  let setLength = timer * 60;
-  let amountOfSets = sets;
+function counter(timer, sets, selectedAttributes) {
   let resultList = [];
   const songsGap = 10;
 
-  for (let set = 0; set < amountOfSets; set++) {
-    let count = setLength;
+  // filtering arrays without extra property
+  let filteredEngArr = eng.filter(song => !song.extra);
+  let filteredChinArr = chinese.filter(song => !song.extra);;
+
+   // filtering arrays with extra property based on attributes checked in HTML
+  if (selectedAttributes.length !== 0) {
+    for (let i = 0; i < selectedAttributes.length; i++) {
+      let attributeEng = eng.filter(song => song.extra === selectedAttributes[i]);
+      let attributeChin = chinese.filter(song => song.extra === selectedAttributes[i]);
+
+      filteredEngArr.push(...attributeEng);
+      filteredChinArr.push(...attributeChin);
+    }
+  }
+
+  // Loop through the number of sets specified
+  for (let set = 0; set < sets; set++) {
+    let count = timer * 60;
     let result = [];
-    let sortedEng = [...eng].sort(() => Math.random() - 0.5);
-    console.log(sortedEng);
-    let sortedChin = [...chinese].sort(() => Math.random() - 0.5);
+
+        // Create a shuffled copy of the English and Chinese song arrays
+    let sortedEng = [...filteredEngArr].sort(() => Math.random() - 0.5);
+    let sortedChin = [...filteredChinArr].sort(() => Math.random() - 0.5);
+
+    // Sets to keep track of selected songs to avoid repetition
     let selectedEng = new Set();
     let selectedChin = new Set();
+    let attributeCounter = 0;
 
+     // Loop until the set length is reached
     while (count > 0) {
+      attributeCounter ++;
+
+      console.log(selectedAttributes);
+
       // Looking in English array
-      let findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
+      // let findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
 
-      if (findIndexEng === -1) {
-        break;
-      }
+      // if (findIndexEng === -1) {
+      //   break;
+      // }
+// Experimental code ***********************************************************************************
+  let findIndexEng; // Default value
 
-      let findEng = sortedEng[findIndexEng];
-      if (!selectedEng.has(findEng.name)) {
-        result.push(findEng);
-        count -= converterToSeconds(findEng.duration) + songsGap;
-        selectedEng.add(findEng.name);
-      }
+  if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "chinNewYear") {
+    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+  } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
+    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+  } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "chinNewYear") {
+    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
+  } else {
+    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
+  }
+
+  if (findIndexEng === -1) {
+    break;
+  }
+
+  let findEng = sortedEng[findIndexEng];
+  if (!selectedEng.has(findEng.name)) {
+    result.push(findEng);
+    count -= converterToSeconds(findEng.duration) + songsGap;
+    selectedEng.add(findEng.name);
+  }
+
+
+//experimental code *******************************************************************************************
+      // Check if the song is not already selected to avoid repetition
+      // let findEng = sortedEng[findIndexEng];
+      // if (!selectedEng.has(findEng.name)) {
+      //   result.push(findEng);
+      //   count -= converterToSeconds(findEng.duration) + songsGap;
+      //   selectedEng.add(findEng.name);
+      // }
 
       // Remove selected song from sortedEng array
       sortedEng.splice(findIndexEng, 1);
 
       // Looking in Chinese array
-      let findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count);
+      let findIndexChinese; // Default value
 
+      if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "christmas") {
+        findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+      } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
+        findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+      } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "christmas") {
+        findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
+      } else {
+        findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count);
+      }
+    
       if (findIndexChinese === -1) {
         break;
       }
-
-      let findChin = sortedChin[findIndexChinese];
-      if (!selectedChin.has(findChin.name)) {
+    
+      let findChin = sortedEng[findIndexEng];
+      if (!selectedEng.has(findChin.name)) {
         result.push(findChin);
         count -= converterToSeconds(findChin.duration) + songsGap;
-        selectedChin.add(findChin.name);
+        selectedEng.add(findChin.name);
       }
 
-      // Remove selected song from sortedChin array
       sortedChin.splice(findIndexChinese, 1);
     }
 
@@ -284,12 +350,14 @@ function counter(timer, sets) {
 
   return songsGenerated;
 
+  // Helper function to convert time from 'mm:ss' format to seconds
   function converterToSeconds(time) {
     const [minutes, seconds] = time.split(':').map(Number);
     const totalSeconds = minutes * 60 + seconds;
     return totalSeconds;
   }
 
+  // Helper function to convert time from seconds to 'mm:ss' format
   function timerGenerator(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -313,11 +381,28 @@ document.getElementById('copyButton').addEventListener('click', function(event) 
 function generateList() {
   const setLength = document.getElementById('setLength').value;
   const numSets = document.getElementById('numSets').value;
-  
-  let generatedList = counter(setLength, numSets);
+  const holidaysCheckbox = document.getElementById('holidays');
+  const christmasCheckbox = document.getElementById('christmas');
+  const chinNewYearCheckbox = document.getElementById('chinNewYear');
+
+  let selectedAttributes = [];
+
+  if (holidaysCheckbox.checked) {
+    selectedAttributes.push('holidays');
+  }
+
+  if (christmasCheckbox.checked) {
+    selectedAttributes.push('christmas');
+  }
+
+  if (chinNewYearCheckbox.checked) {
+    selectedAttributes.push('chinNewYear');
+  }
+
+  let generatedList = counter(setLength, numSets, selectedAttributes);
 
   let messageContainer = document.getElementById('messageContainer');
-  messageContainer.innerHTML = ''; // Clear previous messages
+  messageContainer.innerHTML = '';
 
   if (generatedList.length > 0) {
     messageContainer.innerHTML = generatedList;
@@ -369,4 +454,3 @@ function displaySongsList(songs, containerId) {
   listContainer.innerHTML = "";
   listContainer.appendChild(list);
 }
-
