@@ -77,38 +77,28 @@
         <li>Chinese NewYear<input id="chinNewYear" type="checkbox"></li>
       </form>
 
-      <!-- <form id="songAdd">
-        <label for="addSong">Add a New Song:</label>
-        <h4>Song title:</h4>
-        <input type="text" id="addSongTitle" placeholder="Smoke on the..." required>
-    
-        <h4>Song duration:</h4>
-        <h5>Minutes:</h5>
-        <input type="number" id="addSongDurationMin" name="addSongDurationMin" min="1" placeholder="song duration: minutes" required>
-        <h5>Seconds:</h5>
-        <input type="number" id="addSongDurationSec" name="addSongDurationSec" min="1" placeholder="song duration: seconds" required>
-    
-        <label for="addSongExtra"> Add extra to a new song:</label>
-        <select name="addSongList" id="addSongList" required>
-          <option value="none">None</option>
-          <option value="holidays">Holidays</option>
-          <option value="christmas">Christmas/NewYear</option>
-          <option value="chinNewYear">Chinese New Year</option>
-        </select>
-    
-        <label for="addSongPlaylist"> Choose playlist for a new song:</label>
-        <select name="addSongPlaylist" id="addSongPlaylist" required>
-          <option value="englishList">English</option>
-          <option value="chineseList">Chinese</option>
-        </select>
-    
-        <button type="button" id="addSongButton">Add Song</button>
-      </form> -->
-
       <button id="generateButton">Generate List</button>
       <button id="copyButton">COPY</button>
 
-      <div id="messageContainer"></div>
+      <div 
+        id="messageContainer" 
+        class="container">
+      </div>
+
+      <div 
+        id="dropdown" 
+        class="container__dropdown" 
+        style="display: none;">
+        <input 
+          type="text"
+          id="searchInput"
+          placeholder="Enter song name...">
+          <select id="songDropdown"></select>
+          <button 
+            onclick="replaceSong()">
+            Choose song to change
+          </button>
+      </div>
     </section>
   </header>
 </body>
