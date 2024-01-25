@@ -59,27 +59,35 @@
       </ul>
     </nav>
 
-    <section>
-      <form id="setLengthForm" class="setLengthForm">
+    <section class="generator__form__section">
+      <form id="setLengthForm" class="generator__form">
         <label for="setLength">Set Length (minutes):</label>
-        <input type="number" id="setLength" name="setLength" min="1" required>
+        <input 
+          class="generator__form__input" 
+          type="number" 
+          id="setLength" 
+          name="setLength" 
+          min="1" 
+          required>
       </form>
 
-      <form id="numSetsForm">
+      <form id="numSetsForm" class="generator__form">
         <label for="numSets">Number of Sets:</label>
-        <input type="number" id="numSets" name="numSets" min="1" required>
+        <input class="generator__form__input" type="number" id="numSets" name="numSets" min="1" required>
       </form>
 
-      <form id="extras">
-        <label for="extraRequirements">Extra requirements:</label>
-        <li>Weekend/Holidays<input id="holidays" type="checkbox"></li>
-        <li>Christmas/NewYear<input id="christmas" type="checkbox"></li>
-        <li>Chinese NewYear<input id="chinNewYear" type="checkbox"></li>
+      <form class="generator__extras" id="extras">
+        <label class="generator__extras__label" for="extraRequirements">Extra requirements:</label>
+        <li class="custom-checkbox">Weekend/Holidays<input id="holidays" type="checkbox"></li>
+        <li class="custom-checkbox">Christmas/NewYear<input id="christmas" type="checkbox"></li>
+        <li class="custom-checkbox">Chinese NewYear<input id="chinNewYear" type="checkbox"></li>
       </form>
 
-      <button id="generateButton">Generate List</button>
-      <button id="copyButton">COPY</button>
+      <button class="generator__button" id="generateButton">Generate List</button>
+      <button class="generator__button" id="copyButton">Copy list</button>
+    </section>
 
+    <section class="generator__messageContainer">
       <div 
         id="messageContainer" 
         class="container">
@@ -94,7 +102,8 @@
           id="searchInput"
           placeholder="Enter song name...">
           <select id="songDropdown"></select>
-          <button 
+          <button
+            class="dropdown__button"
             onclick="replaceSong()">
             Choose song to change
           </button>

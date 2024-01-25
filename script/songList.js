@@ -1396,7 +1396,8 @@ function counter(timer, sets, selectedAttributes) {
 
   for (let set = 0; set < resultList.length; set++) {
     totalSetLength = 0;
-    songsGenerated += `<h3>Set ${set + 1}:</h3><ul>`;
+    songsGenerated += `<div class = 'containerForSet', id = containerForSet>`;
+    songsGenerated += `<h3 class = 'container__set'>Set ${set + 1}:</h3><ul>`;
     let gapCounter = 0;
     let setID = `${set}`;
 
@@ -1411,6 +1412,7 @@ function counter(timer, sets, selectedAttributes) {
     songsGenerated += '</ul>';
     songsGenerated += `<h4 id="set_${setID}">Total Set length: ${timerGenerator(totalSetLength + gapCounter * 10)}</h4>`;
     songsGenerated += '<br>';
+    songsGenerated += `</div>`;
 
   }
 
@@ -1443,7 +1445,6 @@ document.getElementById('copyButton').addEventListener('click', function(event) 
   event.preventDefault();
   copyToClipboard();
 });
-
 
 function generateList() {
   const setLength = document.getElementById('setLength').value;
