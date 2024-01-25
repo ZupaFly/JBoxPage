@@ -334,6 +334,7 @@ const eng = [
   {
     name: 'Elton John, Ed Sheeran - Merry Christmas',
     duration: '03:30',
+    extra: 'christmas',
   },
   {
     name: 'Elvis Presley - A Little Less Conversation',
@@ -606,6 +607,7 @@ const eng = [
   {
     name: 'Mariah Carey - All I want for Christmas',
     duration: '03:47',
+    extra: 'christmas',
   },
   {
     name: 'Maroon 5 - Maps',
@@ -970,6 +972,7 @@ const eng = [
   {
     name: 'Wham! - Last Christmas',
     duration: '03:47',
+    extra: 'christmas',
   },
   {
     name: 'Adam Lambert - What Are You Want From Me',
@@ -1180,7 +1183,8 @@ const chinese = [
   },
   {
     name: '刘德华 (Andy Lau)  — 恭喜发财  Gong Xi Fa Cai',
-    duration: '03:20'
+    duration: '03:20',
+    extra: 'chinNewYear'
   },
   {
     name: '只是太爱你你  Just Love You Too Much',
@@ -1244,7 +1248,8 @@ const chinese = [
   },
   {
     name: '许冠杰  - 财神到 | Coi San Dou (春节哥)',
-    duration: '03:20'
+    duration: '03:20',
+    extra: 'chinNewYear'
   },
   {
     name: '路飞文 - 嘉宾  Lu Fei Wen - Jiabin  GUEST',
@@ -1282,6 +1287,14 @@ const chinese = [
     name: 'Price of love',
     duration: '04:17'
   },
+  {
+    name: 'Princess',
+    duration: '03:37'
+  },
+  {
+    name: 'Qi Shi Dou Mei You(Actually Nothing)',
+    duration: '03:43'
+  },
 ];
 
 let totalSetLength = 0;
@@ -1305,46 +1318,46 @@ function counter(timer, sets, selectedAttributes) {
     }
   }
 
+  // Create a shuffled copy of the English and Chinese song arrays
+  let sortedEng = [...filteredEngArr].sort(() => Math.random() - 0.5);
+  let sortedChin = [...filteredChinArr].sort(() => Math.random() - 0.5);
+
   // Loop through the number of sets specified
   for (let set = 0; set < sets; set++) {
     let count = timer * 60;
     let result = [];
-
-        // Create a shuffled copy of the English and Chinese song arrays
-    let sortedEng = [...filteredEngArr].sort(() => Math.random() - 0.5);
-    let sortedChin = [...filteredChinArr].sort(() => Math.random() - 0.5);
 
     // Sets to keep track of selected songs to avoid repetition
     let selectedEng = new Set();
     let selectedChin = new Set();
     let attributeCounter = 0;
 
-     // Loop until the set length is reached
-    while (count > 0) {
-      attributeCounter ++;
+      // Loop until the set length is reached
+      while (count > 0) {
+        attributeCounter ++;
 
-  let findIndexEng; // Default value
+      let findIndexEng; // Default value
 
-  if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "chinNewYear") {
-    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-  } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
-    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-  } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "chinNewYear") {
-    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
-  } else {
-    findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
-  }
+      if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "chinNewYear") {
+        findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+      } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
+        findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+      } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "chinNewYear") {
+        findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
+      } else {
+        findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
+      }
 
-  if (findIndexEng === -1) {
-    break;
-  }
+      if (findIndexEng === -1) {
+        break;
+      }
 
-  let findEng = sortedEng[findIndexEng];
-  if (!selectedEng.has(findEng.name)) {
-    result.push(findEng);
-    count -= converterToSeconds(findEng.duration) + songsGap;
-    selectedEng.add(findEng.name);
-  }
+      let findEng = sortedEng[findIndexEng];
+      if (!selectedEng.has(findEng.name)) {
+        result.push(findEng);
+        count -= converterToSeconds(findEng.duration) + songsGap;
+        selectedEng.add(findEng.name);
+      }
       // Remove selected song from sortedEng array
       sortedEng.splice(findIndexEng, 1);
 
@@ -1360,11 +1373,11 @@ function counter(timer, sets, selectedAttributes) {
       } else {
         findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count);
       }
-    
+
       if (findIndexChinese === -1) {
         break;
       }
-    
+
       let findChin = sortedChin[findIndexChinese];
       if (!selectedChin.has(findChin.name)) {
         result.push(findChin);
@@ -1372,6 +1385,8 @@ function counter(timer, sets, selectedAttributes) {
         selectedChin.add(findChin.name);
       }
       sortedChin.splice(findIndexChinese, 1);
+
+      console.log(sortedChin);
     }
 
     resultList.push(result);
@@ -1613,4 +1628,6 @@ function replaceSong() {
 
 
 // 4. Добавить праздничные атрибуты в массивы
-// 5. Добавить новые песни
+
+// 6. Добавить кнопку "share"
+
