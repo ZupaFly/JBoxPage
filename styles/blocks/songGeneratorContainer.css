@@ -1,0 +1,137 @@
+.container{
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.containerForSet{
+  padding: 5px;
+  width: 31%;
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.containerForSet:hover {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.container__set {
+  margin: 0;
+}
+
+.generator__form {
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid green;
+}
+
+.generator__messageContainer {
+  margin-bottom: 15px;
+}
+
+.generator__button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  width: 49%;
+}
+
+.generator__button:hover {
+  background-color: #3498db;
+  cursor: pointer;
+}
+
+.generator__form__section {
+  width: 31%;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.generator__form__input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.generator__extras {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.generator__extras__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.custom-checkbox {
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+  list-style-type: none;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.container__dropdown {
+  display: none;
+  width: 31%;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(31, 2, 1, 0.952);
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Styles for the song dropdown */
+#songDropdown {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.dropdown__button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown__button:hover {
+  background-color: #2980b9;
+}
