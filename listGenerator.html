@@ -76,12 +76,29 @@
         <input class="generator__form__input" type="number" id="numSets" name="numSets" min="1" required>
       </form>
 
+      <div class="generator__flex">
+
       <form class="generator__extras" id="extras">
         <label class="generator__extras__label" for="extraRequirements">Extra requirements:</label>
         <li class="custom-checkbox">Weekend/Holidays<input id="holidays" type="checkbox"></li>
         <li class="custom-checkbox">Christmas/NewYear<input id="christmas" type="checkbox"></li>
         <li class="custom-checkbox">Chinese NewYear<input id="chinNewYear" type="checkbox"></li>
       </form>
+
+      <div class="generatoraddSong">
+        <button 
+          class="generatorAddSong__button"
+          id="addSongButton"
+          onclick="addSong()">Add</button>
+        <h4 class="generatorAddSong__title">
+        Add or remove songs
+        </h4>
+        <button 
+          class="generatorAddSong__button"
+          id="removeSongButton"
+          onclick="removeSong()">remove</button>
+      </div>
+    </div>
 
       <button class="generator__button" id="generateButton">Generate List</button>
       <button class="generator__button" id="copyButton">Copy list</button>

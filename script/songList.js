@@ -1385,8 +1385,6 @@ function counter(timer, sets, selectedAttributes) {
         selectedChin.add(findChin.name);
       }
       sortedChin.splice(findIndexChinese, 1);
-
-      console.log(sortedChin);
     }
 
     resultList.push(result);
@@ -1396,8 +1394,9 @@ function counter(timer, sets, selectedAttributes) {
 
   for (let set = 0; set < resultList.length; set++) {
     totalSetLength = 0;
-    songsGenerated += `<div class = 'containerForSet', id = containerForSet>`;
-    songsGenerated += `<h3 class = 'container__set'>Set ${set + 1}:</h3><ul>`;
+    songsGenerated += `<div class='containerForSet' id='containerForSet_${set}' onclick='setCurrentSetIndex(${set})'>`;
+    songsGenerated += `<h3 class = 'container__set'>Set ${set + 1}:</h3>`;
+    songsGenerated += `<ul id='ul_${set + 1}'>`;
     let gapCounter = 0;
     let setID = `${set}`;
 
@@ -1495,8 +1494,8 @@ function copyToClipboard() {
 
 // script for showing full set lists
 document.addEventListener("DOMContentLoaded", function () {
-  var chineseSongsButton = document.getElementById("chineseSongsList");
-  var englishSongsButton = document.getElementById("englishSongsList");
+  let chineseSongsButton = document.getElementById("chineseSongsList");
+  let englishSongsButton = document.getElementById("englishSongsList");
 
   chineseSongsButton.addEventListener("click", function () {
     displaySongsList(chinese, "songsListContainer");
@@ -1524,10 +1523,11 @@ function displaySongsList(songs, containerId) {
 
 let selectedSongName = "";
 let selectedSong;
+let dropdownArray = [];
 
 function showDropdown(index) {
-  var dropdown = document.getElementById("dropdown");
-  var songDropdown = document.getElementById("songDropdown");
+  let dropdown = document.getElementById("dropdown");
+  let songDropdown = document.getElementById("songDropdown");
   let searchInput = document.getElementById('searchInput');
 
   // Очищаем предыдущие элементы
@@ -1563,14 +1563,17 @@ function showDropdown(index) {
 
   searchInput.addEventListener('input', function(event) {
     let searchTerm = event.target.value.toLowerCase();
+
     let filteredSongs = chinese.concat(eng)
       .filter(song => song.name.toLowerCase().includes(searchTerm))
       .map((song, index) => {
         let option = document.createElement("option");
         option.value = index;
         option.text = song.name + " - " + song.duration;
+        dropdownArray.push(option);
         return option;
       });
+
     songDropdown.innerHTML = "";
     filteredSongs.forEach(option => songDropdown.add(option));
   });
@@ -1587,21 +1590,52 @@ function showDropdown(index) {
 function replaceSong() {
   let dropdown = document.getElementById("dropdown");
   let songDropdown = document.getElementById("songDropdown");
+
   let selectedSongIndex = songDropdown.value;
+  console.log('selected song index = ', selectedSongIndex);
+
   let clickedIndex = dropdown.dataset.clickedIndex;
+
   let lastFiveDigitsSong = selectedSongName.slice(-5);
+
+  let clickedElement = document.getElementById(clickedIndex);
+
 
   // Получаем выбранную песню из выпадающего списка
   let elementId = clickedIndex.slice(-1);
 
+  console.log('songDropdown INDEX = ', songDropdown);
+  
+  const dropdownElementForArray = document.getElementById('songDropdown');
+  const optionsForDropDown = dropdownElementForArray.options;
+  let forSelectionArray = [];
+
+  for (let i = 0; i < optionsForDropDown.length; i++) {
+    const optionText = optionsForDropDown[i].text;
+  
+    // Split the option text into parts
+    const parts = optionText.split('-');
+  
+    // Extract and trim the name and duration
+    const name = parts.slice(0, -1).join('-').trim();
+    const duration = parts[parts.length - 1].trim();
+  
+    // Create an object with properties name and duration
+    const songObject = { name, duration };
+  
+    // Add the object to the array
+    forSelectionArray.push(songObject);
+  }
+
+  console.log(forSelectionArray);
+
   if (!isNaN(parseFloat(elementId)) && elementId % 2 !== 0) {
-    selectedSong = chinese[selectedSongIndex];
+    selectedSong = forSelectionArray[selectedSongIndex];
   } else if (!isNaN(parseFloat(elementId)) && elementId % 2 === 0) {
-    selectedSong = eng[selectedSongIndex];
+    selectedSong = forSelectionArray[selectedSongIndex];
   }
 
   // Заменяем текст песни в элементе списка
-  let clickedElement = document.getElementById(clickedIndex);
   clickedElement.innerHTML = selectedSong.name + " - " + selectedSong.duration;
 
   let parts = clickedIndex.split('_');
@@ -1625,6 +1659,62 @@ function replaceSong() {
 
   // Скрываем выпадающий список
   dropdown.style.display = "none";
+  searchInput.value = "";
+}
+
+let currentSetIndex = null;
+
+function setCurrentSetIndex(setIndex) {
+  currentSetIndex = setIndex;
+}
+
+function addSong() {
+  if (currentSetIndex !== null) {
+    // Find the ul element for the set
+    const ulElement = document.getElementById(`ul_${currentSetIndex + 1}`);
+
+    // Create a new list item with a unique id
+    const newSongIndex = ulElement.childElementCount + 1; // Get the next index
+    const newItem = document.createElement('li');
+    newItem.id = `song_${currentSetIndex}_${newSongIndex}`;
+    newItem.setAttribute('onclick', `showDropdown('${newItem.id}')`);
+    const newItemText = document.createTextNode(`New Song - 00:00`);
+    newItem.appendChild(newItemText);
+
+    // Append the new item to the list
+    ulElement.appendChild(newItem);
+  }
+}
+
+function removeSong() {
+  if (currentSetIndex !== null) {
+    // Find the ul element for the set
+    const ulElement = document.getElementById(`ul_${currentSetIndex + 1}`);
+
+    // Get the last child (last <li> element) and remove it
+    const lastLi = ulElement.lastElementChild;
+
+    if (lastLi) {
+      ulElement.removeChild(lastLi);
+    }
+
+    // Initialize removedSetLength
+    let removedSetLength = 0;
+
+    // Get the new length after removing the last song
+    const liElements = ulElement.getElementsByTagName('li');
+
+    for (let i = 0; i < liElements.length; i++) {
+      const liText = liElements[i].textContent;
+      const lastFiveChars = liText.slice(-5);
+
+      removedSetLength += converterToSeconds(lastFiveChars);
+    }
+
+    // Update the total set length
+    const newRemovedSetLength = document.getElementById(`set_${currentSetIndex}`);
+    newRemovedSetLength.innerText = `Total Set length: ${timerGenerator(removedSetLength)}`;
+  }
 }
 
 

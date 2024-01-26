@@ -71,16 +71,36 @@
 }
 
 .generator__extras {
+  width: 47%;
   background-color: #fff;
-  padding: 10px;
+  padding: 5px 0 0 5px ;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(145, 255, 1, 0.1);
+  border: 1px solid black;
+}
+
+.generator__flex {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .generator__extras__label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
+}
+
+.generatoraddSong {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 48%;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(145, 255, 1, 0.1);
+  border: 1px solid black;
 }
 
 .custom-checkbox {
@@ -92,6 +112,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.generatorAddSong__title {
+  margin: 0;
+  align-self: center;
 }
 
 .container__dropdown {
@@ -124,14 +149,37 @@
 }
 
 .dropdown__button {
-  background-color: #3498db;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .dropdown__button:hover {
-  background-color: #2980b9;
+  background-color: #3498db;
+  cursor: pointer;
+}
+
+.generatorAddSong__button {
+  display: inline-block;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.generatorAddSong__button:hover {
+  background-color: #3498db;
+  cursor: pointer;
 }
