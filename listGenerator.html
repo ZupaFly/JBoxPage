@@ -76,16 +76,26 @@
         <input class="generator__form__input" type="number" id="numSets" name="numSets" min="1" required>
       </form>
 
-      <div class="generator__flex">
+      <div class="generator__flex" id="generator__flex">
 
       <form class="generator__extras" id="extras">
-        <label class="generator__extras__label" for="extraRequirements">Extra requirements:</label>
-        <li class="custom-checkbox">Weekend/Holidays<input id="holidays" type="checkbox"></li>
-        <li class="custom-checkbox">Christmas/NewYear<input id="christmas" type="checkbox"></li>
-        <li class="custom-checkbox">Chinese NewYear<input id="chinNewYear" type="checkbox"></li>
+        <label class="generator__extras__label" for="extraRequirements">
+          Extra requirements:
+        </label>
+          <li class="custom-checkbox">
+            Weekend/Holidays
+              <input id="holidays" type="checkbox"></li>
+          <li class="custom-checkbox">
+            Christmas/NewYear
+              <input id="christmas" type="checkbox"></li>
+          <li class="custom-checkbox">
+            Chinese NewYear
+              <input id="chinNewYear" type="checkbox"></li>
       </form>
 
-      <div class="generatoraddSong">
+      <div 
+        class="generatoraddSong"
+        id="generatoraddSong">
         <button 
           class="generatorAddSong__button"
           id="addSongButton"
@@ -99,6 +109,13 @@
           onclick="removeSong()">remove</button>
       </div>
     </div>
+
+    <form class="generator__extras host" id="host">
+      <li class="custom-checkbox">
+        Have host?
+        <input type="checkbox" id="hostCheckbox">
+      </li>
+    </form>
 
       <button class="generator__button" id="generateButton">Generate List</button>
       <button class="generator__button" id="copyButton">Copy list</button>

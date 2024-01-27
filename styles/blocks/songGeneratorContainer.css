@@ -92,7 +92,6 @@
 }
 
 .generatoraddSong {
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 48%;
@@ -182,4 +181,8 @@
 .generatorAddSong__button:hover {
   background-color: #3498db;
   cursor: pointer;
+}
+
+.host {
+  margin-bottom: 5px;
 }
