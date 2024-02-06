@@ -1410,7 +1410,7 @@ const chinese = [
   {
     name: 'Happines',
     duration: '04:40',
-    actuality: 'passive',
+    actuality: 'active',
   },
   {
     name: 'JANICE - My Cookie Can',
@@ -1627,11 +1627,12 @@ const chinese = [
 let totalSetLength = 0;
 let addRemoveButton = document.getElementById('generatoraddSong');
 addRemoveButton.style.display = 'none';
+const songsGap = 15;
 
 function counter(timer, sets, selectedAttributes) {
   const hostCheckbox = document.getElementById('hostCheckbox');
   let resultList = [];
-  const songsGap = 15;
+
   const hostGap = 60;
   const intoMinute = 60;
 
@@ -1827,6 +1828,7 @@ function generateList() {
     messageContainer.appendChild(noSongsMessage);
   }
 }
+
 // copy to clipboard function
 
 function copyToClipboard() {
@@ -1989,7 +1991,8 @@ function replaceSong() {
       let changedSetLength 
       = converterToSeconds(lastFiveDigitsSet) 
         + converterToSeconds(selectedSong.duration)
-        - converterToSeconds(lastFiveDigitsSong);
+        - converterToSeconds(lastFiveDigitsSong)
+        + songsGap;
 
       newSetLength.innerText 
         = `Total Set length:${timerGenerator(changedSetLength)}`;
@@ -2002,9 +2005,15 @@ function replaceSong() {
 }
 
 let currentSetIndex = null;
+let oldSetLength;
+let lastFiveDigitsOfOldSetLength;
 
 function setCurrentSetIndex(setIndex) {
   currentSetIndex = setIndex;
+  oldSetLength = document.getElementById(`set_${currentSetIndex}`);
+  console.log('Old set length', oldSetLength);
+  lastFiveDigitsOfOldSetLength = converterToSeconds(oldSetLength.textContent.slice(-5));
+  console.log('hello', lastFiveDigitsOfOldSetLength); 
 }
 
 function addSong() {
@@ -2027,37 +2036,28 @@ function addSong() {
 
 function removeSong() {
   if (currentSetIndex !== null) {
+    let removedSetLength = 0;
+
     // Find the ul element for the set
     const ulElement = document.getElementById(`ul_${currentSetIndex + 1}`);
 
     // Get the last child (last <li> element) and remove it
     const lastLi = ulElement.lastElementChild;
+    removedSetLength = lastFiveDigitsOfOldSetLength - converterToSeconds(lastLi.textContent.slice(-5));
 
     if (lastLi) {
       ulElement.removeChild(lastLi);
     }
 
-    // Initialize removedSetLength
-    let removedSetLength = 0;
-
-    // Get the new length after removing the last song
-    const liElements = ulElement.getElementsByTagName('li');
-
-    for (let i = 0; i < liElements.length; i++) {
-      const liText = liElements[i].textContent;
-      const lastFiveChars = liText.slice(-5);
-
-      removedSetLength += converterToSeconds(lastFiveChars);
-    }
-
     // Update the total set length
+
     const newRemovedSetLength = document.getElementById(`set_${currentSetIndex}`);
     newRemovedSetLength.innerText = `Total Set length: ${timerGenerator(removedSetLength)}`;
   }
 }
 
 
-// 4. Добавить праздничные атрибуты в массивы
-
-// 6. Добавить кнопку "share"
+// 1. лист должен генерироваться при нажатии кнопки Enter
+// 2. При удалении или добавлении песен должнен учитываться гэп между песнями
+// 3. Если нажат атрибут хост, то при удалении полного списка атрибут должен учитываться в финальном расчете времени
 
