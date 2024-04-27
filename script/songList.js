@@ -1360,6 +1360,21 @@ const eng = [
     duration: '03:56',
     actuality: 'active',
   },
+  {
+    name: 'Selena Gomez - Love you like a love song',
+    duration: '03:11',
+    actuality: 'active',
+  },
+  {
+    name: 'Taylor Swift - I Knew You Were Trouble',
+    duration: '03:41',
+    actuality: 'active',
+  },
+  {
+    name: 'Taylor Swift - Shake It Off',
+    duration: '03:40',
+    actuality: 'active',
+  },
 ];
 
 const chinese = [
@@ -1622,18 +1637,37 @@ const chinese = [
     duration: '03:43',
     actuality: 'active',
   },
+  {
+    name: 'Timi Zhuo - 迎春花_Yingchun Hua (Chinese New Year)',
+    duration: '03:38',
+    actuality: 'chinNewYear',
+  },
+  {
+    name: '特别的爱给特别的你 - Tebie de ai - Special Love',
+    duration: '03:56',
+    actuality: 'active',
+  },
+  {
+    name: 'G.E.M. -- 光年之外 | Light years away | Guang nian zhi wai',
+    duration: '03:50',
+    actuality: 'active',
+  },
+  {
+    name: 'Beyond - Really Love You. 真的爱你',
+    duration: '04:54',
+    actuality: 'active',
+  },
 ];
 
 let totalSetLength = 0;
 let addRemoveButton = document.getElementById('generatoraddSong');
+const hostCheckbox = document.getElementById('hostCheckbox');
 addRemoveButton.style.display = 'none';
 const songsGap = 15;
+const hostGap = 60;
 
 function counter(timer, sets, selectedAttributes) {
-  const hostCheckbox = document.getElementById('hostCheckbox');
   let resultList = [];
-
-  const hostGap = 60;
   const intoMinute = 60;
 
   // filtering arrays without extra property
@@ -1755,12 +1789,13 @@ function counter(timer, sets, selectedAttributes) {
       totalSetLength += converterToSeconds(resultList[set][i].duration);
       gapCounter += 1;
     }
-    setLengthAndGap = totalSetLength + gapCounter * 10 + hostGap
+
+    console.log('gap Counter = ', gapCounter);
+    setLengthAndGap = totalSetLength + gapCounter * 10 + hostGap;
     songsGenerated += '</ul>';
-    songsGenerated += `<h4 id="set_${setID}">Total Set length: ${timerGenerator(totalSetLength + gapCounter * 10 + hostGap)}</h4>`;
+    songsGenerated += `<h4 id="set_${setID}">Total Set length: ${timerGenerator(totalSetLength + ((gapCounter - 1) * songsGap))}</h4>`;
     songsGenerated += '<br>';
     songsGenerated += `</div>`;
-
   }
 
     return songsGenerated;
@@ -1992,7 +2027,7 @@ function replaceSong() {
       = converterToSeconds(lastFiveDigitsSet) 
         + converterToSeconds(selectedSong.duration)
         - converterToSeconds(lastFiveDigitsSong)
-        + songsGap;
+        ;
 
       newSetLength.innerText 
         = `Total Set length:${timerGenerator(changedSetLength)}`;
@@ -2012,8 +2047,9 @@ function setCurrentSetIndex(setIndex) {
   currentSetIndex = setIndex;
   oldSetLength = document.getElementById(`set_${currentSetIndex}`);
   console.log('Old set length', oldSetLength);
+  console.log(oldSetLength.textContent.slice(-5));
   lastFiveDigitsOfOldSetLength = converterToSeconds(oldSetLength.textContent.slice(-5));
-  console.log('hello', lastFiveDigitsOfOldSetLength); 
+  console.log('last 5 digits', lastFiveDigitsOfOldSetLength); 
 }
 
 function addSong() {
@@ -2031,33 +2067,39 @@ function addSong() {
 
     // Append the new item to the list
     ulElement.appendChild(newItem);
+
+    // add a gap to set length
+    const newAddSetLength = document.getElementById(`set_${currentSetIndex}`);
+    newAddSetLength.innerText = `Total Set length: ${timerGenerator(lastFiveDigitsOfOldSetLength + songsGap)}`;
+    lastFiveDigitsOfOldSetLength += songsGap;
   }
 }
 
 function removeSong() {
   if (currentSetIndex !== null) {
-    let removedSetLength = 0;
-
     // Find the ul element for the set
     const ulElement = document.getElementById(`ul_${currentSetIndex + 1}`);
+    const newRemovedSetLength = document.getElementById(`set_${currentSetIndex}`);
 
     // Get the last child (last <li> element) and remove it
     const lastLi = ulElement.lastElementChild;
-    removedSetLength = lastFiveDigitsOfOldSetLength - converterToSeconds(lastLi.textContent.slice(-5));
 
-    if (lastLi) {
+    console.log('lastLi = ',lastLi);
+    console.log('count = ' ,ulElement.childElementCount);
+
+    if (ulElement.childElementCount > 0) {
+      let removedSetLength = converterToSeconds(lastLi.textContent.slice(-5)) + songsGap; // Adding the gap of removed song
       ulElement.removeChild(lastLi);
+      // Update the total set length
+      lastFiveDigitsOfOldSetLength -= removedSetLength; // Subtracting the length of the removed song
+      newRemovedSetLength.innerText = `Total Set length: ${timerGenerator(lastFiveDigitsOfOldSetLength)}`;
+    } else {
+      // If there are no items to remove, set total set length to "00:00"
+      newRemovedSetLength.innerText = `Total Set length: 00:00`;
     }
-
-    // Update the total set length
-
-    const newRemovedSetLength = document.getElementById(`set_${currentSetIndex}`);
-    newRemovedSetLength.innerText = `Total Set length: ${timerGenerator(removedSetLength)}`;
   }
 }
 
 
 // 1. лист должен генерироваться при нажатии кнопки Enter
-// 2. При удалении или добавлении песен должнен учитываться гэп между песнями
-// 3. Если нажат атрибут хост, то при удалении полного списка атрибут должен учитываться в финальном расчете времени
 
