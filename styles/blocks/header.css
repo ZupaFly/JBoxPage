@@ -9,6 +9,18 @@
   align-items: center;
 }
 
+@media (max-width: 1000px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 10px;
+  }
+}
+
 .header__logoLink {
   padding: 0;
   text-decoration: none;

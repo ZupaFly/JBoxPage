@@ -7,9 +7,15 @@
 
 .nav__generator {
   display: flex;
-  width: 31%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
+}
+
+.mainPage,
+.mainLink {
+  display: block;
+  width: 100px;
 }
 
 .containerForSet{
