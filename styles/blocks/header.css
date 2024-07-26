@@ -6,6 +6,7 @@
   height: 100vh;
   margin-top: 20px;
   padding: 0 124px;
+  align-items: center;
 }
 
 .header__logoLink {

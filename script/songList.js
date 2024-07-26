@@ -1894,6 +1894,8 @@ document.getElementById('copyButton').addEventListener('click', function(event) 
 document.getElementById('resetButton').addEventListener('click', function(event) {
   event.preventDefault();
   messageContainer.innerHTML = '';
+  const dropdownDiv = document.getElementById('dropdown');
+  dropdownDiv.style.display = 'none';
 });
 
 function generateList() {

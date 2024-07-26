@@ -203,11 +203,32 @@
   margin-bottom: 5px;
 }
 
+@media (max-width: 1300px) {
+  .containerForSet,
+  .generator__form__section,
+  .container__dropdown {
+    width: 70%;
+  }
+}
+
 @media (max-width: 1000px) {
   .containerForSet,
   .generator__form__section,
   .container__dropdown {
-    width: 48%;
+    width: 80%;
+  }
+}
+
+@media (max-width: 700px) {
+  .containerForSet,
+  .generator__form__section,
+  .container__dropdown {
+    width: 100%;
+  }
+
+  .generator__flex {
+    flex-direction: column;
+    width: 100%;
   }
 
   .header__logo {
@@ -246,11 +267,6 @@
   .custom-checkbox {
     padding-left: 0;
     display: inline-block;
-    width: 100%;
-  }
-
-  .generator__flex {
-    flex-direction: column;
     width: 100%;
   }
 
