@@ -22,7 +22,7 @@
 </head>
 <body class="general">
   <header class="header">
-    <nav class="nav">
+    <nav class="nav__generator">
       <a 
         href="./index.html"
         class="header__logoLink">
@@ -31,33 +31,11 @@
           alt="Logo image"
           class="header__logo">
       </a>
-      <ul class="nav__list">
-        <li class="nav__item nav__link">
-          <div class="dropdown">
-            <span class="dropdown__title">Song List</span>
-            <div class="dropdown__list">
-              <a 
-                href="./engSongList.html" class="dropdown__link">Foreign Songs</a>
-              <a 
-                href="./chinSongList.html"
-                class="dropdown__link">Chinese Songs</a>
-              <a 
-              href="./listGenerator.html"
-              class="dropdown__link">Song List Generator</a>
-            </div>
-          </div>
-        </li>
-        <li class="nav__item">
-          <a href="./index.html#gallery" class="nav__link">Gallery</a>
-        </li>
-        <li class="nav__item">
-          <a href="#video" class="nav__link">Video</a>
-        </li>
-        <li class="nav__item">
-          <a href="./index.html#about-us" class="nav__link">About Us</a>
-        </li>
-      </ul>
+      <div>
+          <a href="./index.html">Back to main page</a>
+      </div>
     </nav>
+
 
     <section class="generator__form__section">
       <form id="setLengthForm" class="generator__form">
@@ -83,10 +61,10 @@
           Extra requirements:
         </label>
           <li class="custom-checkbox">
-            Weekend/Holidays
+            Weekend / Holidays
               <input id="holidays" type="checkbox"></li>
           <li class="custom-checkbox">
-            Christmas/NewYear
+            Christmas / NewYear
               <input id="christmas" type="checkbox"></li>
           <li class="custom-checkbox">
             Chinese NewYear
@@ -99,26 +77,40 @@
         <button 
           class="generatorAddSong__button"
           id="addSongButton"
-          onclick="addSong()">Add</button>
+          onclick="addSong()">Add
+        </button>
         <h4 class="generatorAddSong__title">
         Add or remove songs
         </h4>
         <button 
           class="generatorAddSong__button"
           id="removeSongButton"
-          onclick="removeSong()">remove</button>
+          onclick="removeSong()">remove
+        </button>
       </div>
     </div>
 
-    <form class="generator__extras host" id="host">
-      <li class="custom-checkbox">
-        Have host?
-        <input type="checkbox" id="hostCheckbox">
-      </li>
-    </form>
+    <div class="generator__hostAndSong">
+      <form class="generator__extra-host host" id="host">
+        <li class="custom-checkbox">
+          Have host?
+          <input type="checkbox" id="hostCheckbox">
+        </li>
+      </form>
+  
+      <form class="generator__extra-host host" id="host">
+        <li class="custom-checkbox">
+          Start from Eng song?
+          <input type="checkbox" id="firstSongCheckbox">
+        </li>
+      </form>
+    </div>
 
+    <div class="generator__buttons" generator>
       <button class="generator__button" id="generateButton">Generate List</button>
       <button class="generator__button" id="copyButton">Copy list</button>
+      <button class="generator__button" id="resetButton">Reset</button>
+    </div>
     </section>
 
     <section class="generator__messageContainer">
