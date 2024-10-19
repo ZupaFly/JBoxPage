@@ -15,11 +15,13 @@ const eng = [
     name: 'Adele - Set fire to the rain',
     duration: '03:58',
     actuality: 'active',
+    // popularity: false,
   },
   {
     name: 'Adele - Someone like you',
     duration: '04:42',
     actuality: 'active',
+    // popularity: true,
   },
   {
     name: 'Coldplay - Adventure Of A Lifetime',
@@ -55,6 +57,7 @@ const eng = [
     name: 'Meghan Trainor - All About That Bass',
     duration: '03:16',
     actuality: 'active',
+    // popularity: true,
   },
   {
     name: 'Anastacia - Left Outside Alone',
@@ -189,6 +192,7 @@ const eng = [
     name: 'Bruno Mars - Treasure',
     duration: '03:04',
     actuality: 'active',
+    // popularity: true,
   },
   {
     name: 'Bruno Mars - That`s what I like',
@@ -1673,9 +1677,14 @@ let totalSetLength = 0;
 let addRemoveButton = document.getElementById('generatoraddSong');
 const hostCheckbox = document.getElementById('hostCheckbox');
 const firstSong = document.getElementById('firstSongCheckbox');
-addRemoveButton.style.display = 'none';
-const songsGap = 15;
+const songsGap = 10;
 const hostGap = 60;
+
+if (addRemoveButton) {
+  addRemoveButton.style.display = 'none';
+} else {
+  console.error('Element with ID "generatoraddSong" not found.');
+}
 
 function counter(timer, sets, selectedAttributes) {
   let resultList = [];
@@ -1711,8 +1720,6 @@ function counter(timer, sets, selectedAttributes) {
       count = timer * intoMinute;
     }
 
-    console.log(count);
-
     let result = [];
 
     // Sets to keep track of selected songs to avoid repetition
@@ -1721,109 +1728,100 @@ function counter(timer, sets, selectedAttributes) {
     let attributeCounter = 0;
 
       // Loop until the set length is reached
+
+      function findSongIndex(songs, count, selectedAttributes, attributeCounter, defaultExtra) {
+        let findIndex = -1;
+      
+        if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes !== defaultExtra) {
+          findIndex = songs.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+        } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
+          findIndex = songs.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
+        } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] !== defaultExtra) {
+          findIndex = songs.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
+        } else {
+          findIndex = songs.findIndex(value => converterToSeconds(value.duration) <= count);
+        }
+      
+        return findIndex;
+      }
+
       while (count > 0) {
         attributeCounter ++;
 
         if (firstSong.checked) {
-          let findIndexEng; // Default value
+          let findIndexEng = findSongIndex(sortedEng, count, selectedAttributes, attributeCounter, "chinNewYear");
+          
+          if (findIndexEng === -1) break;
 
-          if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "chinNewYear") {
-            findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-          } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
-            findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-          } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "chinNewYear") {
-            findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
-          } else {
-            findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
-          }
-    
-          if (findIndexEng === -1) {
-            break;
-          }
-    
           let findEng = sortedEng[findIndexEng];
+
+          if (!findEng.popularity && attributeCounter === 1) {
+            let popularityIndex = sortedEng.findIndex(value => value.popularity && converterToSeconds(value.duration) <= count);
+            if (popularityIndex !== -1) {
+              findEng = sortedEng[popularityIndex];
+              findIndexEng = popularityIndex; // Update the index for removal
+            }
+          }
+
           if (!selectedEng.has(findEng.name)) {
             result.push(findEng);
             count -= converterToSeconds(findEng.duration) + songsGap;
             selectedEng.add(findEng.name);
           }
-          // Remove selected song from sortedEng array
+          
           sortedEng.splice(findIndexEng, 1);
-    
+
           // Looking in Chinese array
-          let findIndexChinese; // Default value
-    
-          if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "christmas") {
-            findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-          } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
-            findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-          } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "christmas") {
-            findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
-          } else {
-            findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count);
-          }
-    
-          if (findIndexChinese === -1) {
-            break;
-          }
-    
+          let findIndexChinese = findSongIndex(sortedChin, count, selectedAttributes, attributeCounter, "christmas");
+
+          if (findIndexChinese === -1) break;
+
           let findChin = sortedChin[findIndexChinese];
+
           if (!selectedChin.has(findChin.name)) {
             result.push(findChin);
             count -= converterToSeconds(findChin.duration) + songsGap;
             selectedChin.add(findChin.name);
           }
+          
           sortedChin.splice(findIndexChinese, 1);
         } else {
             // Looking in Chinese array
-            let findIndexChinese; // Default value
+            let findIndexChinese = findSongIndex(sortedChin, count, selectedAttributes, attributeCounter, "christmas");
 
-            if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "christmas") {
-              findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-            } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
-              findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-            } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "christmas") {
-              findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
-            } else {
-              findIndexChinese = sortedChin.findIndex(value => converterToSeconds(value.duration) <= count);
-            }
-      
-            if (findIndexChinese === -1) {
-              break;
-            }
-      
-            let findChin = sortedChin[findIndexChinese];
-            if (!selectedChin.has(findChin.name)) {
-              result.push(findChin);
-              count -= converterToSeconds(findChin.duration) + songsGap;
-              selectedChin.add(findChin.name);
-            }
-            sortedChin.splice(findIndexChinese, 1);
+          if (findIndexChinese === -1) break;
 
-            let findIndexEng; // Default value
+          let findChin = sortedChin[findIndexChinese];
 
-            if (selectedAttributes.length === 1 && attributeCounter === 2 && selectedAttributes != "chinNewYear") {
-              findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-            } else if (selectedAttributes.length === 2 && attributeCounter === 2) {
-              findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[0]);
-            } else if (selectedAttributes.length === 2 && attributeCounter === 3 && selectedAttributes[1] != "chinNewYear") {
-              findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count && value.extra === selectedAttributes[1]);
-            } else {
-              findIndexEng = sortedEng.findIndex(value => converterToSeconds(value.duration) <= count);
+          if (!findChin.popularity && attributeCounter === 1) {
+            let popularityIndex = sortedChin.findIndex(value => value.popularity && converterToSeconds(value.duration) <= count);
+            if (popularityIndex !== -1) {
+              findChin = sortedChin[popularityIndex];
+              findIndexChinese = popularityIndex; // Update the index for removal
             }
-      
-            if (findIndexEng === -1) {
-              break;
-            }
-      
-            let findEng = sortedEng[findIndexEng];
-            if (!selectedEng.has(findEng.name)) {
-              result.push(findEng);
-              count -= converterToSeconds(findEng.duration) + songsGap;
-              selectedEng.add(findEng.name);
-            }
-            // Remove selected song from sortedEng array
-            sortedEng.splice(findIndexEng, 1);
+          }
+
+          if (!selectedChin.has(findChin.name)) {
+            result.push(findChin);
+            count -= converterToSeconds(findChin.duration) + songsGap;
+            selectedChin.add(findChin.name);
+          }
+          
+          sortedChin.splice(findIndexChinese, 1);
+
+          let findIndexEng = findSongIndex(sortedEng, count, selectedAttributes, attributeCounter, "chinNewYear");
+          
+          if (findIndexEng === -1) break;
+
+          let findEng = sortedEng[findIndexEng];
+
+          if (!selectedEng.has(findEng.name)) {
+            result.push(findEng);
+            count -= converterToSeconds(findEng.duration) + songsGap;
+            selectedEng.add(findEng.name);
+          }
+          
+          sortedEng.splice(findIndexEng, 1);
         }
       }
 
@@ -1964,9 +1962,12 @@ function displaySongsList(songs, containerId) {
   let listContainer = document.getElementById(containerId);
   let list = document.createElement('ul');
 
-  for (let i = 0; i < songs.length; i++) {
+  const alphabetSongsList = songs.slice().sort((a, b) => a.name.localeCompare(b.name));
+
+  for (let i = 0; i < alphabetSongsList.length; i++) {
     let listItem = document.createElement('li');
-    listItem.textContent = `${i + 1}. ${songs[i].name} - ${songs[i].duration}`;
+    listItem.classList.add('song-item');
+    listItem.textContent = `${i + 1}. ${alphabetSongsList[i].name}`;
     list.appendChild(listItem);
   }
 
@@ -1988,32 +1989,33 @@ function showDropdown(index) {
   songDropdown.innerHTML = "";
 
   // Заполняем выпадающий список всеми песнями из массива
-  document.addEventListener('click', function(event){
+  document.addEventListener('click', function(event) {
     let clickedElementFromList = event.target;
     let elementId = clickedElementFromList.id.slice(-1);
 
-    if (!isNaN(parseFloat(elementId)) && elementId % 2 !== 0) {
-      songDropdown.innerHTML = "";
+    if (clickedElementFromList.tagName === 'LI') {
+      let allListItems = document.querySelectorAll('li');
+      allListItems.forEach(item => item.classList.remove('song-click'));
+      clickedElementFromList.classList.add('song-click');
 
-      for (let i = 0; i < chinese.length; i++) {
-        let optionChin = document.createElement("option");
-        optionChin.value = i;
-        optionChin.text = chinese[i].name + " - " + chinese[i].duration;
-        songDropdown.add(optionChin);
-      }
-    };
+    if (!isNaN(parseFloat(elementId))) {
+        songDropdown.innerHTML = "";
 
-    if (!isNaN(parseFloat(elementId)) && elementId % 2 === 0) {
-      songDropdown.innerHTML = "";
+        // If elementId is odd, populate with 'chinese' array, otherwise with 'eng' array
+        
+        let isOdd = elementId % 2 !== 0;
+        let songList = (isOdd === firstSong.checked) ? chinese : eng;
 
-      for (let y = 0; y < eng.length; y++) {
-        let optionEng = document.createElement("option");
-        optionEng.value = y;
-        optionEng.text = eng[y].name + " - " + eng[y].duration;
-        songDropdown.add(optionEng);
-      }
+        // Loop through the selected song list (either 'chinese' or 'eng')
+        for (let i = 0; i < songList.length; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.text = songList[i].name + " - " + songList[i].duration;
+            songDropdown.add(option);
+        }
     }
-  });
+  };
+});
 
   searchInput.addEventListener('input', function(event) {
     let searchTerm = event.target.value.toLowerCase();
@@ -2115,10 +2117,7 @@ let lastFiveDigitsOfOldSetLength;
 function setCurrentSetIndex(setIndex) {
   currentSetIndex = setIndex;
   oldSetLength = document.getElementById(`set_${currentSetIndex}`);
-  console.log('Old set length', oldSetLength);
-  console.log(oldSetLength.textContent.slice(-5));
   lastFiveDigitsOfOldSetLength = converterToSeconds(oldSetLength.textContent.slice(-5));
-  console.log('last 5 digits', lastFiveDigitsOfOldSetLength); 
 }
 
 function addSong() {

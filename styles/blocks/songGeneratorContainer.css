@@ -1,8 +1,18 @@
 .container{
-  width: 100%;
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+
+}
+
+.messageContainer-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  color: black;
+  text-decoration: none;
 }
 
 .nav__generator {
@@ -19,8 +29,9 @@
 }
 
 .containerForSet{
+  display: block;
   padding: 5px;
-  width: 31%;
+  width: 31vw;
   border-radius: 5px;
   border: 1px solid black;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
@@ -41,7 +52,7 @@
 }
 
 .generator__messageContainer {
-  margin-bottom: 15px;
+  margin: 0 auto 15px;
 }
 
 .generator__buttons {
@@ -68,7 +79,7 @@
 }
 
 .generator__form__section {
-  width: 31%;
+  width: 31vw;
   background-color: #fff;
   padding: 5px;
   border-radius: 8px;
@@ -141,13 +152,14 @@
 }
 
 .container__dropdown {
-  display: none;
-  width: 31%;
+  display: block;
+  width: 31vw;
   padding: 5px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(31, 2, 1, 0.952);
-  margin-top: 10px;
   border-radius: 5px;
+
+  margin: 10px auto 0;
 }
 
 #searchInput {

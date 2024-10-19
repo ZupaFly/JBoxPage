@@ -6,7 +6,25 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-align: center;
   column-count: 4;
-  column-gap: 20px; /* Adjust the gap between columns as needed */
+  column-gap: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .engSongList {
+    column-count: 3; /* 3 columns for screens 1200px or less */
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .engSongList {
+    column-count: 2; /* 2 columns for screens 900px or less */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .engSongList {
+    column-count: 1; /* 1 column for screens 600px or less */
+  }
 }
 
 .engSongList > ul {
@@ -16,17 +34,23 @@
 }
 
 .engSongList > ul > li {
+  display: block;
   margin-bottom: 10px;
-  padding: 15px;
+  padding: 10px;
   background-color: #ecf0f1;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
   break-inside: avoid; 
-  height: 30px;
+  height: 40px;
   cursor: pointer;
+  list-style: none;
+  text-align: left;
 }
 
 .engSongList > ul > li:hover {
   background-color: #bdc3c7;
+}
+
+.song-click {
+  color: red;
 }
