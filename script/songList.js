@@ -52,6 +52,7 @@ const eng = [
     name: 'Alexandra Stan - Mr. Saxobeat',
     duration: '03:16',
     actuality: 'active',
+    // popularity: true,
   },
   {
     name: 'Meghan Trainor - All About That Bass',
@@ -1379,6 +1380,21 @@ const eng = [
     duration: '03:40',
     actuality: 'active',
   },
+  {
+    name: '4 Non Blondes - Whats up',
+    duration: '04:40',
+    actuality: 'active',
+  },
+  {
+    name: 'Leo Sayer - More Than I Can Say',
+    duration: '02:55',
+    actuality: 'active',
+  },
+  {
+    name: 'The Carpenters - Yesterday Once More',
+    duration: '04:02',
+    actuality: 'active',
+  },
 ];
 
 const chinese = [
@@ -1669,6 +1685,11 @@ const chinese = [
   {
     name: 'Liu Yewei 刘烨溦 -- 不如回家喝自来水 . Tap Water',
     duration: '02:46',
+    actuality: 'active',
+  },
+  {
+    name: 'WuKong',
+    duration: '04:26',
     actuality: 'active',
   },
 ];
@@ -2167,6 +2188,8 @@ function removeSong() {
     }
   }
 }
+
+
 
 
 // 1. лист должен генерироваться при нажатии кнопки Enter

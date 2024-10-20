@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <header class="header">
+  <header class="header" id="header__chin">
     <nav class="nav">
     <a 
       href="./index.html"
@@ -58,10 +58,29 @@
     </ul>
   </nav>
   <div class="chineseSongsList" id="chineseSongsList"></div>
-
   <script src="./script/songList.js"></script>
+
   <script>
       displaySongsList(chinese, 'chineseSongsList');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const headerChin = document.getElementById('header__chin');
+      const scrollButtonChin = document.getElementById('scrollButtonChin');
+
+      window.addEventListener('scroll', function() {
+          const headerChinHeight = headerChin.offsetHeight;
+          const scrollPositionChin = window.scrollY;
+
+        if (scrollPositionChin > headerChinHeight) {
+            scrollButtonChin.style.display = 'block';
+        } else {
+            scrollButtonChin.style.display = 'none';
+        }
+      });
+    });
   </script>
+  <a href="#header__chin">
+    <button id="scrollButtonChin" class="goToTheTopButton">UP</button>
+  </a>
 </body>
 </html>

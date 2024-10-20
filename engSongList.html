@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <header class="header">
+  <header class="header" id="header__eng">
     <nav class="nav">
     <a 
       href="./index.html"
@@ -62,6 +62,25 @@
   <script src="./script/songList.js"></script>
   <script>
       displaySongsList(eng, 'englishSongsList');
+
+      document.addEventListener('DOMContentLoaded', () => {
+      const headerEng = document.getElementById('header__eng');
+      const scrollButtonEng = document.getElementById('scrollButtonEng');
+
+      window.addEventListener('scroll', function() {
+          const headerEngHeight = headerEng.offsetHeight;
+          const scrollPositionEng = window.scrollY;
+
+        if (scrollPositionEng > headerEngHeight) {
+            scrollButtonEng.style.display = 'block';
+        } else {
+            scrollButtonEng.style.display = 'none';
+        }
+      });
+    });
   </script>
+  <a href="#header__eng">
+    <button id="scrollButtonEng" class="goToTheTopButton">UP</button>
+  </a>
 </body>
 </html>
